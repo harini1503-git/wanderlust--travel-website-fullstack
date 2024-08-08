@@ -25,8 +25,8 @@ textarea{
     height: 100px;
 }
 .btn{
-    height: 30px;
-    width: 80px;
+    height: 25px;
+    width: 70px;
     text-align: center !important;
     background-color: rgb(232, 41, 41) !important;
     display: flex !important;
@@ -70,26 +70,26 @@ textarea{
 .f-info-socialmedia, .f-info-companyname, .f-info-links{
     margin-bottom: 10px;
 }
-.container{
-    display: flex;
-    flex-wrap: wrap;
-}
+
 .card-img-top{
-    height: 18rem;
-    width: 24rem;
-    border-radius: 1rem;
-    object-fit: cover;
+    height: 18rem !important;
+    width: 100% !important;
+    border-radius: 1rem !important;
+    object-fit: cover !important;
 }
 .card{
-    border: 1px solid rgb(189, 187, 187) !important;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.20), 0 6px 20px 0 rgba(0, 0, 0, 0.30);
+    border: none !important;
     border-radius: 1rem !important;
-    margin-right: 30px !important;
-    margin-top: 30px;
-    height: 32rem !important;
+    margin-bottom: 2rem;
+    height: 23rem !important;
+}
+.card-body{
+    padding: 0 !important;
 }
 .card-text{
-    margin: 10px !important;
+    margin: 5px !important;
+    font-size: 13px;
+    color: black;
 }
 .card-img-overlay{
     opacity: 0;
@@ -98,6 +98,12 @@ textarea{
     opacity: 0.2;
     background-color: white;
 }
+.card-img-overlay:hover i{
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .form-control, .form-group{
     width: 100%;
 }
@@ -111,4 +117,10 @@ label{
 }
 .card-main{
     height: 45rem !important;
+}
+.card-title{
+    font-size: 17px;
+}
+.listing-link{
+    text-decoration: none;
 }

@@ -4,19 +4,24 @@
     <!-- <form method="get" action="/listings/new">
         <button>New</button>
     </form> -->
-    <div class="container row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
         <% for(let listings of allListings){ %>
-            <div class="card" style="width: 18rem;">
-                <img src="<%= listings.image.url %>" class="card-img-top" alt="<%= listings.image.filename %>">
-                <div class="card-body">
-                  <h4 class="card-title"><%= listings.title %></h5>
-                  <p class="card-text"><%= listings.location %>, <%= listings.country %></p>
-                  <h5 class="card-title">&#8377; <%= listings.price.toLocaleString("en-IN") %>/ Night</h5>
-                  <!-- <a href="/listings/<%= listings.id %>/edit" class="btn btn-primary">Edit</a>
-                  <br/> -->
-                  <a href="/listings/<%= listings.id %>" class="btn btn-primary">Details</a>
-                </div>
-              </div>
+            <a href="/listings/<%= listings.id %>" class="listing-link">
+                <div class="card col">
+                    <img src="<%= listings.image.url %>" class="card-img-top" alt="<%= listings.image.filename %>" style="height: 20rem;">
+                    <div class="card-img-overlay">
+                        <p class="card-text"><i class="fa-regular fa-heart"></i></i></p>
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title"><%= listings.title %></h5>
+                      <p class="card-text"><%= listings.location %>, <%= listings.country %></p>
+                      <h5 class="card-title">&#8377; <%= listings.price.toLocaleString("en-IN") %>/ Night</h5>
+                      <!-- <a href="/listings/<%= listings.id %>/edit" class="btn btn-primary">Edit</a>
+                      <br/> -->
+                    </div>
+                  </div>
+            </a>
+            
         <% } %>
     </div>
 </body>
