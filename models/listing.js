@@ -1,5 +1,6 @@
 const mongoose= require("mongoose");
 const listingschema= new mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     title:{
         type: String,
         required: true
@@ -10,7 +11,10 @@ const listingschema= new mongoose.Schema({
     },
     image:{
         filename: String,
-        url: String,
+        url: {
+            type: String,
+            default: "https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg"
+        }
     },
     price: {
         type: Number,

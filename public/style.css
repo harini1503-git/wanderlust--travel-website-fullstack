@@ -26,12 +26,14 @@ textarea{
 }
 .btn{
     height: 25px;
-    width: 70px;
+    width: 70px !important;
     text-align: center !important;
     background-color: rgb(232, 41, 41) !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center;
+    margin-top: 15px;
+    margin-left: 17%;
 }
 .fa-wordpress{
     color: maroon;
@@ -55,7 +57,7 @@ textarea{
     background-color: rgb(244, 238, 238);
     left: 0 !important;
     bottom: 0 !important;
-    width: 100%;
+    width: 100% !important;
 }
 .f-info-socialmedia i, .f-info-links a{
     margin-left: 20px;
@@ -123,4 +125,12 @@ label{
 }
 .listing-link{
     text-decoration: none;
+}
+.row-2{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.row-2 .form-group{
+    width: 33%;
 }

@@ -3,7 +3,10 @@ const Listing = require("../models/listing");
 const sampleListings = require("./data");
 
 async function main(){
-    await mongoose.connect("mongodb://127.0.0.1:27017/travel");
+    await mongoose.connect("mongodb://127.0.0.1:27017/travel", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
 }
 main().then(()=>{
     console.log("connection successful");

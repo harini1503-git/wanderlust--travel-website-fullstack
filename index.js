@@ -6,6 +6,7 @@ const Listing = require("./models/listing");
 const path= require("path");
 const methodoverride= require("method-override");
 const engine = require('ejs-mate');
+const ObjectId = mongoose.Types.ObjectId;
 
 app.engine('ejs', engine);
 app.use(methodoverride('_method'));
@@ -45,20 +46,20 @@ app.post("/listings",async(req, res)=>{
 
 app.get("/listings/:id", async(req,res)=>{
     let {id}= req.params;
-    const list= await Listing.findById(id);
-    res.render("listings/show.ejs", {list});
+    const listing = await Listing.findById(id);  // Mongoose will handle the conversion internally
+        res.render('listings/show', { listing });
 })
 
 app.get("/listings/:id/edit", async(req,res)=>{
     let{id}= req.params;
-    const list= await Listing.findById(id);
-    res.render("listings/edit.ejs",{list});
+   const listing= await Listing.findById(id);  // Mongoose will handle the conversion internally
+    res.render("listings/edit.ejs",{listing});
 });
 
 app.put("/listings/:id", async(req,res)=>{
     let {id}= req.params;
-    await Listing.findByIdAndUpdate(id, {...req.body.listing});
-    res.redirect(`/listings/${id}`)
+    const listing= await Listing.findByIdAndUpdate(id, {...req.body.listing});;  // Mongoose will handle the conversion internally
+    res.redirect(`/listings/${id}`);
 })
 
 app.delete("/listings/:id", async(req,res)=>{

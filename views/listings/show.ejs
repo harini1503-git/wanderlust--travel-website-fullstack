@@ -2,19 +2,19 @@
 <body>
     <div class="col-15 offset-1" style="width: 90%;">
         
-            <h2><%= list.title %></h4>
+            <h2><%= listing.title %></h4>
             <div class="card mb-3 col-20 offset-0  card-main">
-                <img src="<%= list.image.url %>" class="card-img-top imagedetail" alt="<%= list.image.filename %>">
+                <img src="<%= listing.image.url %>" class="card-img-top imagedetail" alt="<%= listing.image.filename %>">
                 <div class="card-body">
-                  <h5 class="card-title"><%= list.title %></h5>
-                  <p class="card-text"><%= list.description %></p>
-                  <p class="card-text"><small class="text-body-secondary"><%= list.location %>, <%= list.country %></small></p>
-                  <h4 class="card-title">&#8377; <%= list.price.toLocaleString("en-IN") %>/ Night</h4>
-                  <form method="get" action="/listings/<%= list._id %>/edit">
+                  <h5 class="card-title"><%= listing.title %></h5>
+                  <p class="card-text"><%= listing.description %></p>
+                  <p class="card-text"><small class="text-body-secondary"><%= listing.location %>, <%= listing.country %></small></p>
+                  <h4 class="card-title">&#8377; <%= listing.price.toLocaleString("en-IN") %>/ Night</h4>
+                  <form method="get" action="/listings/<%= listing.id %>/edit">
                     <button class="btn btn-primary">Edit</button>
                 </form>
                 <br/>
-                <form method="post" action="/listings/<%= list._id %>?_method=DELETE">
+                <form method="post" action="/listings/<%= listing.id %>?_method=DELETE">
                     <button class="btn btn-primary">Delete</button>
                 </form>
                 </div>
