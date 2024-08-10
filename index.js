@@ -6,9 +6,9 @@ const Listing = require("./models/listing");
 const path= require("path");
 const methodoverride= require("method-override");
 const engine = require('ejs-mate');
-const ObjectId = mongoose.Types.ObjectId;
 const wrapAsync= require("./utils/wrapAsync");
 const ExpressError= require("./utils/ExpressError");
+const Listingschema= require("./Schema");
 
 app.engine('ejs', engine);
 app.use(methodoverride('_method'));
@@ -26,6 +26,15 @@ main().then(()=>{
     console.log(err);
 })
 
+const validateListing= (err, req, res, next)=>{
+    let {error}= Listingschema.validate(req.body);
+        if(error){
+            throw new ExpressError(400, error);
+        }else{
+            next();
+        }
+}
+
 app.get("/", (req, res)=>{
     res.send("Working");
 });
@@ -40,12 +49,8 @@ app.get("/listings/new", (req, res)=>{
     res.render("listings/new.ejs");
 })
 
-app.post("/listings",async(req, res, next)=>{
+app.post("/listings",validateListing,async(req, res, next)=>{
         try{
-            if(!req.body.listing){
-                throw new ExpressError(400, "Send valid data");
-            }
-
             const newListing= new Listing(req.body.listing);
             await Listing.insertMany(newListing);
             res.redirect("/listings");
@@ -74,12 +79,8 @@ app.get("/listings/:id/edit", async(req,res)=>{
    }
 });
 
-app.put("/listings/:id", async(req,res)=>{
+app.put("/listings/:id",validateListing, async(req,res)=>{
     try{
-        if(!req.body.listing){
-            throw new ExpressError(400, "Send valid data");
-        }
-
         let {id}= req.params;
     await Listing.findByIdAndUpdate(id, {...req.body.listing});;  // Mongoose will handle the conversion internally
     res.redirect(`/listings/${id}`);
