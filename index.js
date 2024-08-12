@@ -9,6 +9,7 @@ const engine = require('ejs-mate');
 const wrapAsync= require("./utils/wrapAsync");
 const ExpressError= require("./utils/ExpressError");
 const Listingschema= require("./Schema");
+const Review = require("./models/review");
 
 app.engine('ejs', engine);
 app.use(methodoverride('_method'));
@@ -97,6 +98,18 @@ app.delete("/listings/:id", async(req,res)=>{
    }catch(err){
     next(err);
    }
+});
+
+//review
+app.post("/listings/:id/review", async(req,res)=>{
+    let listing= await Listing.findById(req.params.id);
+    let newreview = new Review(req.body.review);
+
+    listing.reviews.push(newreview);
+    await newreview.save();
+    await listing.save();
+    
+    res.redirect(`/listings/${req.params.id}`)
 })
 
 app.all("*", (req, res, next)=>{

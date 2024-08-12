@@ -1,4 +1,8 @@
 const mongoose= require("mongoose");
+const Review= require("./review");
+const Schema= mongoose;
+const { ref } = require("joi");
+
 const listingschema= new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     title:{
@@ -27,7 +31,11 @@ const listingschema= new mongoose.Schema({
     country: {
         type: String,
         required: true
-    }
+    },
+    reviews:[{
+        type: Schema.Types.ObjectId,
+        ref: "reviews",
+    }]
 });  // creating a template a a collections
 
 const Listing= new mongoose.model("Listing", listingschema);  //creating a collection

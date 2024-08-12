@@ -6,20 +6,39 @@
             <div class="card mb-3 col-20 offset-0  card-main">
                 <img src="<%= listing.image.url %>" class="card-img-top imagedetail" alt="<%= listing.image.filename %>">
                 <div class="card-body">
-                  <h5 class="card-title"><%= listing.title %></h5>
                   <p class="card-text"><%= listing.description %></p>
                   <p class="card-text"><small class="text-body-secondary"><%= listing.location %>, <%= listing.country %></small></p>
                   <h4 class="card-title">&#8377; <%= listing.price.toLocaleString("en-IN") %>/ Night</h4>
                   <form method="get" action="/listings/<%= listing.id %>/edit">
                     <button class="btn btn-primary">Edit</button>
                 </form>
-                <br/>
                 <form method="post" action="/listings/<%= listing.id %>?_method=DELETE">
                     <button class="btn btn-primary">Delete</button>
                 </form>
                 </div>
               </div>
-    <div>
-    <br/>
+              <hr>
+              
+            </div> 
+            <!-- ----------------------------------------------------------------------- -->
+             <br>
+            <div class="col-8 offset-1" class="review">
+              <h4>Leave a Review</h4>
+              <form action="/listings/<%= listing.id %>/review" method="post">
+                <!-- for rating -->
+                <div class="mb-3 mt-3">
+                  <label for="ratings" class="form-label">Rating</label>
+                  <input type="range" min="1" max="5" id="rating" name="review[ratings]" class="form-range">
+                </div>
+                <!-- for comment -->
+                 <div class="mb-3 mt-3">
+                  <label for="Comment" class="form-label">Comment</label>
+                  <textarea name="review[Comment]" id="comment" placeholder="Leave your comment"></textarea>
+                 </div>
+                 <!-- submit button -->
+                  <button class="btn btn-primary">submit</button>
+              </form>
+            </div>         
+        
     
 </body>
