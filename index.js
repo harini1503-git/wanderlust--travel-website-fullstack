@@ -8,7 +8,7 @@ const methodoverride= require("method-override");
 const engine = require('ejs-mate');
 const wrapAsync= require("./utils/wrapAsync");
 const ExpressError= require("./utils/ExpressError");
-const Listingschema= require("./Schema");
+const {Listingschema, ReviewSchema}= require("./Schema");
 const Review = require("./models/review");
 
 app.engine('ejs', engine);
@@ -30,7 +30,17 @@ main().then(()=>{
 const validateListing= (err, req, res, next)=>{
     let {error}= Listingschema.validate(req.body);
         if(error){
-            throw new ExpressError(400, error);
+            let errmsg= error.details.map((el)=>el.message).join(",");
+            throw new ExpressError(400, errmsg);
+        }else{
+            next();
+        }
+}
+const validateReview= (err, req, res, next)=>{
+    let {error}= ReviewSchema.validate(req.body);
+        if(error){
+            let errmsg= error.details.map((el)=>el.message).join(",");
+            throw new ExpressError(400, errmsg);
         }else{
             next();
         }
@@ -83,8 +93,8 @@ app.get("/listings/:id/edit", async(req,res)=>{
 app.put("/listings/:id",validateListing, async(req,res)=>{
     try{
         let {id}= req.params;
-    await Listing.findByIdAndUpdate(id, {...req.body.listing});;  // Mongoose will handle the conversion internally
-    res.redirect(`/listings/${id}`);
+        await Listing.findByIdAndUpdate(id, {...req.body.listing});;  // Mongoose will handle the conversion internally
+        res.redirect(`/listings/${id}`);
     }catch(err){
         next(err);
     }
@@ -101,8 +111,9 @@ app.delete("/listings/:id", async(req,res)=>{
 });
 
 //review
-app.post("/listings/:id/review", async(req,res)=>{
-    let listing= await Listing.findById(req.params.id);
+app.post("/listings/:id/review",validateReview, async(req,res)=>{
+    try{
+        let listing= await Listing.findById(req.params.id);
     let newreview = new Review(req.body.review);
 
     listing.reviews.push(newreview);
@@ -110,6 +121,9 @@ app.post("/listings/:id/review", async(req,res)=>{
     await listing.save();
     
     res.redirect(`/listings/${req.params.id}`)
+    }catch(err){
+        next(err);
+    }
 })
 
 app.all("*", (req, res, next)=>{

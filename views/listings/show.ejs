@@ -24,7 +24,7 @@
              <br>
             <div class="col-8 offset-1" class="review">
               <h4>Leave a Review</h4>
-              <form action="/listings/<%= listing.id %>/review" method="post">
+              <form action="/listings/<%= listing.id %>/review" method="post" novalidate class="needs-validation" class="newlisting">
                 <!-- for rating -->
                 <div class="mb-3 mt-3">
                   <label for="ratings" class="form-label">Rating</label>
@@ -33,7 +33,10 @@
                 <!-- for comment -->
                  <div class="mb-3 mt-3">
                   <label for="Comment" class="form-label">Comment</label>
-                  <textarea name="review[Comment]" id="comment" placeholder="Leave your comment"></textarea>
+                  <textarea name="review[Comment]" id="comment" placeholder="Leave your comment" required class="form-control"></textarea>
+                  <div class="invalid-feedback">
+                    Please Leave your Comments to Submit.
+                </div>
                  </div>
                  <!-- submit button -->
                   <button class="btn btn-primary">submit</button>
