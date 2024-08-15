@@ -89,6 +89,10 @@ textarea{
     margin-bottom: 2rem;
     height: 23rem !important;
 }
+.card-review{
+    display: flex !important;
+    border: black;
+}
 .card-body{
     padding: 0 !important;
 }

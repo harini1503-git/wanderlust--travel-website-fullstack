@@ -70,17 +70,17 @@ app.post("/listings",validateListing,async(req, res, next)=>{
         }
     })
 
-app.get("/listings/:id", async(req,res)=>{
+app.get("/listings/:id", async(req,res,next)=>{
     try{
         let {id}= req.params;
-    const listing = await Listing.findById(id);  // Mongoose will handle the conversion internally
-    res.render('listings/show', { listing });
+        const listing = await Listing.findById(id).populate({path: 'reviews'});  // Mongoose will handle the conversion internally
+        res.render('listings/show', { listing });
     }catch(err){
         next(err);
     }
 })
 
-app.get("/listings/:id/edit", async(req,res)=>{
+app.get("/listings/:id/edit", async(req,res,next)=>{
    try{
     let{id}= req.params;
     const listing= await Listing.findById(id);  // Mongoose will handle the conversion internally
@@ -90,7 +90,7 @@ app.get("/listings/:id/edit", async(req,res)=>{
    }
 });
 
-app.put("/listings/:id",validateListing, async(req,res)=>{
+app.put("/listings/:id",validateListing, async(req,res,next)=>{
     try{
         let {id}= req.params;
         await Listing.findByIdAndUpdate(id, {...req.body.listing});;  // Mongoose will handle the conversion internally
@@ -100,7 +100,7 @@ app.put("/listings/:id",validateListing, async(req,res)=>{
     }
 })
 
-app.delete("/listings/:id", async(req,res)=>{
+app.delete("/listings/:id", async(req,res,next)=>{
    try{
     let {id}= req.params;
     await Listing.findByIdAndDelete(id);
@@ -111,7 +111,8 @@ app.delete("/listings/:id", async(req,res)=>{
 });
 
 //review
-app.post("/listings/:id/review",validateReview, async(req,res)=>{
+//post review route
+app.post("/listings/:id/review",validateReview, async(req,res,next)=>{
     try{
         let listing= await Listing.findById(req.params.id);
     let newreview = new Review(req.body.review);
@@ -121,6 +122,18 @@ app.post("/listings/:id/review",validateReview, async(req,res)=>{
     await listing.save();
     
     res.redirect(`/listings/${req.params.id}`)
+    }catch(err){
+        next(err);
+    }
+});
+ 
+//delete route for review
+app.delete("/listings/:id/review/:reviewId", async(req,res,next)=>{
+    try{
+        let {id,reviewId}= req.params;
+        await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
+        await Review.findByIdAndDelete(reviewId);
+        res.redirect(`/listings/${id}`)
     }catch(err){
         next(err);
     }

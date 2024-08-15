@@ -34,9 +34,15 @@ const listingschema= new mongoose.Schema({
     },
     reviews:[{
         type: Schema.Types.ObjectId,
-        ref: "reviews",
+        ref: "Review",
     }]
 });  // creating a template a a collections
+
+listingschema.post("findOneAndDelete", async(listing)=>{
+    if(listing){
+        await Review.deleteMany({_id: {$in: listing.reviews}});
+    }
+})
 
 const Listing= new mongoose.model("Listing", listingschema);  //creating a collection
 
