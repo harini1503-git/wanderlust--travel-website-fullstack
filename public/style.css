@@ -65,9 +65,10 @@ textarea{
 }
 .f-info-socialmedia i, .f-info-links a{
     margin-left: 20px;
+    color: black;
 }
 .f-info-links a{
-    color: grey;
+    color: black;
     text-decoration: none;
 }
 .f-info-links a:hover{
@@ -145,4 +146,7 @@ label{
 }
 .review{
     margin-left: 0% !important;
+}
+#welcome{
+    background-size: cover;
 }
