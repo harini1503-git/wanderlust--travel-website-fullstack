@@ -1,5 +1,22 @@
-body{
+body,html{
     font-family: "Plus Jakarta Sans", sans-serif !important;
+    /* font-family: monospace; */
+    margin: 3px !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+}
+.container{
+    max-width: 100% !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin: 0px !important;
+}
+/* h1{
+    color: maroon;
+} */
+
+#heading{
+    font-size: 26px;
 }
 h2{
     margin-top: 30px !important;
@@ -28,20 +45,26 @@ textarea{
     height: 29px;
     width: 78px !important;
     text-align: center !important;
-    background-color: rgb(232, 41, 41) !important;
+    background-color: maroon !important;
     display: flex !important;
     justify-content: center !important;
-    align-items: center;
-    margin-top: 15px;
-    margin-left: 0;
+    align-items: center !important;
+    margin-top: 25px;
+    margin-left: 125px;
+    color: white;
+    font-weight: bold !important;
 }
+.button-container{
+    display: flex;
+}
+
 .btn:hover{
     background-color: rgb(229, 214, 214) !important;
     color: maroon !important;
 }
-.fa-wordpress{
+.fa-compass{
     color: maroon;
-    font-size: 50px;
+    font-size: 40px;
 }
 .navbar{
     height: 5rem;
@@ -79,7 +102,7 @@ textarea{
 }
 
 .card-img-top{
-    height: 18rem !important;
+    height: 70% !important;
     width: 100% !important;
     border-radius: 1rem !important;
     object-fit: cover !important;
@@ -88,14 +111,20 @@ textarea{
     border: none !important;
     border-radius: 1rem !important;
     margin-bottom: 2rem;
-    height: 23rem !important;
+    height: 24em !important;
+    /* margin-right: 10px; */   
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow */
+    transition: box-shadow 0.3s ease-in-out; /* Smooth transition */
 }
+.card:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+  }
 .card-review{
     display: flex !important;
     border: black;
 }
 .card-body{
-    padding: 0 !important;
+    padding: 15px !important;
 }
 .card-text{
     margin: 5px !important;
@@ -106,8 +135,12 @@ textarea{
     opacity: 0;
 }
 .card-img-overlay:hover{
-    opacity: 0.2;
+    /* opacity: 0.2; */
     background-color: white;
+    transform: scale(0.95);
+}
+.listing-link:hover{
+    transform: scale(1.1);
 }
 .card-img-overlay:hover i{
     float: right;
@@ -127,8 +160,7 @@ label{
     background-size: cover !important;
 }
 .card-main{
-    height: 35rem !important;
-    margin-left: 0%;
+    height: 33rem !important;
 }
 .card-title{
     font-size: 17px;
@@ -139,14 +171,60 @@ label{
 .row-2{
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: start;
 }
-.row-2 .form-group{
-    width: 33%;
+.row{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin: 0 !important;
+    margin-top: 20px !important;
 }
+
 .review{
     margin-left: 0% !important;
+    margin-top: 30px !important;
 }
-#welcome{
-    background-size: cover;
-}
+.rating {
+    direction: rtl;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+  
+  .rating input {
+    display: none;
+  }
+  
+  .rating label {
+    font-size: 45px;
+    color: grey;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .rating input:checked ~ label {
+    color: gold;
+  }
+  
+  .rating input:not(:checked) ~ label:hover,
+  .rating input:not(:checked) ~ label:hover ~ label {
+    color: gold;
+  }
+  
+.container-fluid {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .custom-carousel-height {
+    max-height: 600px !important; /* Set the desired height */
+    overflow: hidden; /* Prevent content overflow */
+  }
+  
+  .custom-carousel-height img {
+    object-fit: cover; /* Ensure the image fits nicely */
+    height: 400px; /* Same height as the carousel */
+    width: 100%;
+  }
+  

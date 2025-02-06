@@ -20,7 +20,7 @@ router.get("/", async(req,res)=>{
 })
 
 router.get("/listings", async(req,res)=>{
-    let allListings= await Listing.find({});
+    let allListings= await Listing.find({});  //mongodb query to find the data from the database
     res.render("listings/indexroot.ejs", {allListings});
 })
 
@@ -30,8 +30,8 @@ router.get("/listings/new", (req, res)=>{
 
 router.post("/",validateListing,async(req, res, next)=>{
         try{
-            const newListing= new Listing(req.body.listing);
-            await Listing.insertMany(newListing);
+            const newListing= new Listing(req.body);  //create a new listings
+            await Listing.insertMany(newListing);   //inserting new 
             res.redirect("/listings");
         }catch(err){
             next(err);

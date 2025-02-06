@@ -4,25 +4,114 @@
     <!-- <form method="get" action="/listings/new">
         <button>New</button>
     </form> -->
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-        <% for(let listings of allListings){ %>
-            <a href="/listings/<%= listings.id %>" class="listing-link">
-                <div class="card col">
-                    <img src="<%= listings.image.url %>" class="card-img-top" alt="<%= listings.image.filename %>" style="height: 20rem;">
-                    <div class="card-img-overlay">
-                        <p class="card-text"><i class="fa-regular fa-heart"></i></i></p>
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title"><%= listings.title %></h5>
-                      <p class="card-text"><%= listings.location %>, <%= listings.country %></p>
-                      <h5 class="card-title">&#8377; <%= listings.price.toLocaleString("en-IN") %>/ Night</h5>
-                      <!-- <a href="/listings/<%= listings.id %>/edit" class="btn btn-primary">Edit</a>
-                      <br/> -->
-                    </div>
+        <div class="container-fluid p-0 m-0">
+
+          <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner custom-carousel-height">
+              <div class="carousel-item active">
+                <img src="https://tii.imgix.net/production/articles/12772/e6e279c7-c6bb-415e-8d1f-0eee12e8a4b9-alDhkb.png?auto=compress&fit=crop&auto=format" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                      <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                      <h1 class="display-3 text-white mb-md-4" style="font-size: 200%;">Fly Towards Your Destination With Us </h1>
                   </div>
-            </a>
-            
-        <% } %>
-    </div>
+              </div>
+            </div>
+
+              <div class="carousel-item">
+                <img src="https://media.cntraveler.com/photos/598339c9b7a86962e8e27c5d/master/pass/Paris_GettyImages-601763009.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                      <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                      <h1 class="display-3 text-white mb-md-4" style="font-size: 200%;">Fly Towards Your Destination With Us </h1>
+                  </div>
+              </div>
+              </div>
+              <div class="carousel-item">
+                <img src="https://cdn.wallpapersafari.com/78/25/JU9bGD.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                      <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                      <h1 class="display-3 text-white mb-md-4" style="font-size: 200%;">Fly Towards Your Destination With Us </h1>
+                  </div>
+              </div>
+              </div>
+              <div class="carousel-item">
+                <img src="https://wallpapercave.com/wp/wp4956794.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                      <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                      <h1 class="display-3 text-white mb-md-4" style="font-size: 200%;">Fly Towards Your Destination With Us </h1>
+                  </div>
+              </div>
+              </div>
+              <div class="carousel-item">
+                <img src="https://www.qantas.com/content/dam/travelinsider/images/explore/asia/india/beautiful-places-to-visit-in-india/iStock-510978989.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                      <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                      <h1 class="display-3 text-white mb-md-4" style="font-size: 200%;">Fly Towards Your Destination With Us </h1>
+                  </div>
+              </div>
+              </div>
+              <div class="carousel-item">
+                <img src="https://th.bing.com/th/id/R.f27fbed6c985d59cf2f758f677df5cad?rik=WmZCqJ%2fndzTlnQ&riu=http%3a%2f%2fwww.tripdezire.com%2fwp-content%2fuploads%2f2017%2f06%2fhd-pics-photos-travel-amazing-best-tour-places-desktop-background-wallpaper.jpg&ehk=OJbftTl8vF1DOh%2bV18PZjAuPvhWTSs2iXreUTpB4NTQ%3d&risl=&pid=ImgRaw&r=0" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                      <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                      <h1 class="display-3 text-white mb-md-4" style="font-size: 200%;">Fly Towards Your Destination With Us </h1>
+                  </div>
+              </div>
+              </div>
+              <div class="carousel-item">
+                <img src="https://cdn.wallpapersafari.com/74/69/C9QEUs.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                      <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                      <h1 class="display-3 text-white mb-md-4" style="font-size: 200%;">Fly Towards Your Destination With Us </h1>
+                  </div>
+              </div>
+              </div>
+              <div class="carousel-item">
+                <img src="https://wallpapercave.com/wp/wp2783229.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                      <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                      <h1 class="display-3 text-white mb-md-4" style="font-size: 200%;">Fly Towards Your Destination With Us </h1>
+                  </div>
+              </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          <h3 style="margin-left: 20px; font-family: monospace;">Plan Your Dream Place with Us here!!</h1>
+
+          <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1">
+            <% for(let listings of allListings){ %>
+                <a href="/listings/<%= listings.id %>" class="listing-link">
+                    <div class="card">
+                        <img src="<%= listings.image.url %>" class="card-img-top" alt="<%= listings.image.filename %>" style="height: 20rem;">
+                        <div class="card-img-overlay">
+                            <p class="card-text"><i class="fa-regular fa-heart"></i></i></p>
+                        </div>
+                        <div class="card-body">
+                          <h4 class="card-title"><b><%= listings.title %></b></h5>
+                          <p class="card-text"><%= listings.location %>, <%= listings.country %></p>
+                          <h5 class="card-title">&#8377; <%= listings.price.toLocaleString("en-IN") %>/ Night</h5>
+                        </div>
+                      </div>
+                </a>
+                
+            <% } %>
+          </div>
+        </div>
 </body>
 </html>

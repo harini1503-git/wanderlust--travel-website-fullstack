@@ -1,7 +1,7 @@
 <% layout('layout/boilerplate') -%>
 <body>
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-8 offset-1">
             <h3>Edit a New Post</h3>
             <form method="post" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" class="newlisting">
                 <div class="form-group">
@@ -18,13 +18,13 @@
                         Please Enter the Description.
                     </div>
                 </div><br/>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="image">image Filename</label>
                     <input name="listing[image][filename]" class="form-control" value="<%= listing.image.filename %>" required>
                     <div class="invalid-feedback">
                         Please Enter Image Filename.
                     </div>
-                </div><br/>
+                </div><br/> -->
                 <div class="form-group">
                     <label for="image">image URL</label>
                     <input name="listing[image][url]" class="form-control" value="<%= listing.image.url %>" required>
@@ -42,7 +42,7 @@
                 </div><br/>
                 
             </div><br/>
-            <div class="row-2">
+            <div class="row-2 offset-1">
                 <div class="form-group col-md-4">
                     <label for="location">Location</label>
                     <input name="listing[location]" class="form-control" value="<%= listing.location %>" required>
@@ -50,7 +50,7 @@
                         Please Enter the location.
                     </div>
                 </div><br/>
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-4">
                     <label for="country">Country</label>
                     <input name="listing[country]" class="form-control" value="<%= listing.country %>" required>
                     <div class="invalid-feedback">
