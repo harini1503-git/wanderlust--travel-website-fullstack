@@ -62,6 +62,7 @@ router.put("/:id",validateListing, async(req,res,next)=>{
     try{
         let {id}= req.params;
         await Listing.findByIdAndUpdate(id, {...req.body.listing});;  // Mongoose will handle the conversion internally
+        req.flash("success","Listing Updated!!!");
         res.redirect(`/listings/${id}`);
     }catch(err){
         next(err);
@@ -72,6 +73,7 @@ router.delete("/:id", async(req,res,next)=>{
    try{
     let {id}= req.params;
     await Listing.findByIdAndDelete(id);
+    req.flash("success","Listing Deleted!!!");
     res.redirect("/listings");
    }catch(err){
     next(err);

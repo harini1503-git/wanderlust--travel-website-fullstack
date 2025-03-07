@@ -35,7 +35,11 @@ const listingschema= new mongoose.Schema({
     reviews:[{
         type: Schema.Types.ObjectId,
         ref: "Review",
-    }]
+    }],
+    owner:{
+        type:Schema.Types.ObjectId,
+        ref: "User",
+    }
 });  // creating a template a a collections
 
 listingschema.post("findOneAndDelete", async(listing)=>{
