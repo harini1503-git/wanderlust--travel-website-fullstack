@@ -25,6 +25,12 @@ const router = require("express/lib/router/index.js");
 const res = require("express/lib/response.js");
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
+const mbxGeocoding= require('@mapbox/mapbox-sdk/services/geocoding');
+const { access } = require('fs');
+const { features } = require('process');
+const mapToken= process.env.MAP_TOKEN;
+const geocodingClient= mbxGeocoding({accessToken: mapToken});
+const { getRecommendations } = require("./utils/recommendation");
 
 
 app.engine('ejs', engine);
@@ -171,21 +177,24 @@ app.get("/listings/new", isLoggedIn, (req, res)=>{
     res.render("listings/new.ejs");
 })
 
-// app.post("/listings",isLoggedIn,validateListing,async(req, res, next)=>{
-//         try{
-//             const newListing= new Listing(req.body.listing);
-//             newListing.owner= req.user._id;
-//             await Listing.insertMany(newListing);
-//             req.flash("success","New Listing Created!!!");
-//             res.redirect("/listings");
-//         }catch(err){
-//             next(err);
-//         }
-//     })
-
-app.post("/listings",upload.single('listing[image]'), (req,res)=>{
-    res.send(req.file);
-})
+app.post("/listings",isLoggedIn,validateListing,async(req, res, next)=>{
+    let response= await geocodingClient.forwardGeocode({
+        query: req.body.listing.location,
+        limit: 1
+    }).send();   
+    
+    try{
+            const newListing= new Listing(req.body.listing);
+            newListing.owner= req.user._id;
+            newListing.geometry= response.body.features[0].geometry;
+            let saved= await Listing.insertMany(newListing);
+            console.log(saved);
+            req.flash("success","New Listing Created!!!");
+            res.redirect("/listings");
+        }catch(err){
+            next(err);
+        }
+    })
 
 app.get("/listings/:id",isLoggedIn, async(req,res,next)=>{
     try{
@@ -237,6 +246,31 @@ app.delete("/listings/:id",isLoggedIn,isowner, async(req,res,next)=>{
     next(err);
    }
 });
+
+// app.get("/recommendations", async (req, res) => {
+//     try {
+//         const userPreferences = {
+//             location: "New York",
+//             price: 100,
+//             amenities: ["WiFi", "Pool", "Kitchen"]
+//         };
+
+//         const recommendations = await getRecommendations(userPreferences);
+//         res.render("recommendations", { recommendations });
+//     } catch (error) {
+//         res.status(500).send("Error fetching recommendations");
+//     }
+// });
+
+// app.post("/recommendations", async (req, res) => {
+//     try {
+//         const userPreferences = req.body; // { location, price, amenities }
+//         const recommendations = await getRecommendations(userPreferences);
+//         res.json(recommendations);
+//     } catch (error) {
+//         res.status(500).json({ error: "Error fetching recommendations" });
+//     }
+// });
 
 //review
 //post review route

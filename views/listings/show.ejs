@@ -4,7 +4,7 @@
         
             <h2><%= listing.title %></h4>
             <div class="card mb-3 col-20 offset-0  card-main">
-                <img src="<%= listing.image.url %>" class="card-img-top imagedetail" alt="<%= listing.image.filename %>">
+                <img src="<%= listing.image.url %>" class="card-img-top imagedetail">
                 <div class="card-body">
                   <p class="card-text">Created By:  <i><%= listing.owner.username %></i></p>
                   <p class="card-text"><%= listing.description %></p>
@@ -86,7 +86,24 @@
                   <br>
                 <% } %>
                 </div>
+                <div class="col-8 offset-1 mb-3">
+                  <h3>Where you'll be</h3>
+                  <div id="map"></div>
+                </div>
             </div>         
-        
+            
     
+            <script>
+              mapboxgl.accessToken = 'pk.eyJ1IjoiaGFyaW5pLTIxIiwiYSI6ImNtN3oyanh4djBnOGUycnNqanhkaWphNmgifQ.hCDdMlWjBAGHZpvCxvFT6A';
+              const coordinates= <%- JSON.stringify(listing.geometry.coordinates) %>;
+                const map = new mapboxgl.Map({
+                    container: 'map', // container ID
+                    style: "mapbox://styles/mapbox/streets-v12",
+                    center: [77.209, 28.6139], // starting position [lng, lat]. Note that lat must be set between -90 and 90
+                    zoom: 9 // starting zoom
+                });
+                console.log(coordinates);
+
+                const marker= new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+            </script>
 </body>

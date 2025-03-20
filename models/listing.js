@@ -2,6 +2,8 @@ const mongoose= require("mongoose");
 const Review= require("./review");
 const Schema= mongoose;
 const { ref } = require("joi");
+const { type } = require("express/lib/response");
+const { required } = require("../Schema");
 
 const listingschema= new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -39,6 +41,16 @@ const listingschema= new mongoose.Schema({
     owner:{
         type:Schema.Types.ObjectId,
         ref: "User",
+    },
+    geometry: {
+        type:{
+            type: String,
+            enum: ['Point'],
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
     }
 });  // creating a template a a collections
 
