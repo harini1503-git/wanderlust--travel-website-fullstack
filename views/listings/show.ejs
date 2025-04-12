@@ -94,12 +94,12 @@
             
     
             <script>
-              mapboxgl.accessToken = 'pk.eyJ1IjoiaGFyaW5pLTIxIiwiYSI6ImNtN3oyanh4djBnOGUycnNqanhkaWphNmgifQ.hCDdMlWjBAGHZpvCxvFT6A';
-              const coordinates= <%- JSON.stringify(listing.geometry.coordinates) %>;
+              mapboxgl.accessToken = 'pk.eyJ1IjoiaGFyaW5pLTIxIiwiYSI6ImNtOWR6MTdwYjEwYXAyanFxNmpyOTRlYnQifQ.BrNvAe93ehWVpJOBw0fJqA';
+              let coordinates= <%- JSON.stringify(listing.geometry.coordinates) %>;
                 const map = new mapboxgl.Map({
                     container: 'map', // container ID
                     style: "mapbox://styles/mapbox/streets-v12",
-                    center: [77.209, 28.6139], // starting position [lng, lat]. Note that lat must be set between -90 and 90
+                    center: [coordinates[0], coordinates[1]], // starting position [lng, lat]. Note that lat must be set between -90 and 90
                     zoom: 9 // starting zoom
                 });
                 console.log(coordinates);
